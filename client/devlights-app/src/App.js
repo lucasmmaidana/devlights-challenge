@@ -18,7 +18,7 @@ import {
   theme,
   Divider,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
+import { ColorModeSwitcher } from './components/ColorModeSwitcher';
 
 function App() {
   const [logsHistory, setLogsHistory] = useState([]);
