@@ -15,7 +15,7 @@ function isValid(string) {
     return false
   } else {
     if (a[0] - lf > 1) {
-      // // Need to remove more than 1 of the same character
+      // Need to remove more than 1 of the same character
       return false
     } else {
       // I can remove 1 character
