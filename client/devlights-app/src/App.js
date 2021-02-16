@@ -1,7 +1,11 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+
 import Form from './components/Form';
 import HistoryTable from './components/HistoryTable';
+
+import isValid from './api';
+
+import { ColorModeSwitcher } from './components/ColorModeSwitcher';
 import {
   ChakraProvider,
   Box,
@@ -10,34 +14,32 @@ import {
   theme,
   Divider,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './components/ColorModeSwitcher';
 
 function App() {
   const [logsHistory, setLogsHistory] = useState([]);
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     const string = event.target['string'].value;
 
-    fetch('/api', {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
+    const result = await isValid(string);
+
+    const logDatetime = new Date();
+    const logDatetimeFormated = logDatetime
+      .toString()
+      .split(' ')
+      .splice(1, 4)
+      .join(' ');
+
+    setLogsHistory(prev => [
+      {
+        string: string,
+        isValid: result.isValid,
+        datetime: logDatetimeFormated,
       },
-      body: JSON.stringify({ string: string }),
-    })
-      .then(res => res.json())
-      .then(result => {
-        let logDatetime = new Date();
-        logDatetime = logDatetime.toString().split(' ').splice(1, 4).join(' ');
-        setLogsHistory(prev => [
-          { string: string, isValid: result.isValid, datetime: logDatetime },
-          ...prev,
-        ]);
-      })
-      .catch(error => console.error('Error:', error));
+      ...prev,
+    ]);
   }
 
   return (
