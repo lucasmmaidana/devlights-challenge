@@ -14,7 +14,7 @@ app.post("/api", (req, res) => {
   const result = isValid(string)
   res.setHeader("content-type", "application/json")
   res.setHeader("Access-Control-Allow-Origin", "*")
-  console.log(result)
+  console.log(`"${string}" is valid: ${result}`)
   res.json({ isValid: result })
 })
 
