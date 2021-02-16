@@ -6,7 +6,7 @@ function Form({ onSubmitFunction }) {
     <form onSubmit={onSubmitFunction}>
       <Flex align="center" my={4}>
         <Box flex="1" p="2">
-          <Input required name="string" placeholder="Enter string" />
+          <Input required name="string" placeholder="Enter a string" />
         </Box>
 
         <Box>

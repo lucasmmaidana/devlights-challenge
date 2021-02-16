@@ -21,7 +21,7 @@ function HistoryTable({ data }) {
         <Thead>
           <Tr>
             <Th>String</Th>
-            <Th>Valid</Th>
+            <Th>Is valid</Th>
             <Th>Datetime</Th>
           </Tr>
         </Thead>
